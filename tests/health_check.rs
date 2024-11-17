@@ -13,8 +13,7 @@ async fn spawn_app() -> String {
     // tokio::spawn returns a handle to the spawned future
     // but we have no use for it here, hance the non-binding let
     let _ = tokio::spawn(server);
-    println!("{}", port);
-    format!("http://127.0.0.1:{}",port)
+    format!("http://127.0.0.1:{}", port)
 }
 
 #[tokio::test]

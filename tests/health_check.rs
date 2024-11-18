@@ -66,6 +66,7 @@ async fn subscribe_returns_a_400_when_data_is_missing() {
         ("name=le%20guin", "missingtheemail"),
         ("email=ursula_le_guin%40gmail.com", "missingthename"),
         ("", "missingbothnameandemail"),
+        
     ];
     for (invalid_body, error_message) in test_cases {
         //Act

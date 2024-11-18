@@ -1,5 +1,5 @@
 use reqwest::Client;
-use sqlx::{Connection, PgConnection, PgPool};
+use sqlx::PgPool;
 use std::net::TcpListener;
 use zero2prod::configuration::get_configuration;
 use zero2prod::startup;
@@ -30,7 +30,7 @@ async fn spawn_app() -> TestApp {
     let _ = tokio::spawn(server);
     TestApp {
         address,
-        db_pool: connection_pool
+        db_pool: connection_pool,
     }
 }
 

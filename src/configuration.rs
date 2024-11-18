@@ -13,18 +13,16 @@ pub struct DatabaseSettings {
     pub database_name: String,
 }
 
-pub fn get_configuration() -> Result<Settings, config::ConfigError> {
-    // Initialize our configuration reader
-    let mut settings = config::Config::default();
+use config::{ConfigBuilder, ConfigError, File};
 
-    // Add configuration values from a file named `configuration`
-    // It will look for any top-level file with an expression
-    // that `config` knows how to pars: yaml, json, etc
-    settings.merge(config::File::with_name("configuration"))?;
+pub fn get_configuration() -> Result<Settings, ConfigError> {
+    let builder = ConfigBuilder::<config::builder::DefaultState>::default();
 
-    // Try to convert the configuration values it read into
-    // our Settings type
-    settings.try_into()
+    let settings = builder
+        .add_source(File::with_name("configuration"))
+        .build()?; // Constrói a configuração
+
+    settings.try_deserialize::<Settings>()
 }
 
 impl DatabaseSettings {

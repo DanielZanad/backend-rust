@@ -29,7 +29,4 @@ features = [
     "runtime-async-std",
     "macros",
     "postgres",
-    "uuid",
-    "chrono",
-    "migrate",
 ]
